@@ -5,58 +5,63 @@ class User(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
-    pickuplines_id =db.Column(db.Integer,db.ForeignKey('pickuplines_id'))
-    interviewpitch_id =db.Column(db.Integer,db.ForeignKey('interviewpitch_id'))
-    productionpitch_id =db.Column(db.Integer,db.ForeignKey('productionpitch_id'))
-    promotionPitch_id =db.Column(db.Integer,db.ForeignKey('promotionPitch_id'))
+    pitches = db.relationship("Pitch", backref="user", lazy = "dynamic")
     comments= db.relationship("Comments", backref="user", lazy ="dynamic")
 
     def __repr__(self):
         return f'User {self.username}'
 
-class Pickuplines(db.model):
-    __tablename__='pickuplines'
+class PitchCategory(db.Model):
 
-    id= db.Column(db.Integer,primary_key =True)
-    name= db.Column(db.String(255))
-    user-id =db.Column(db.Integer,db.ForeignKey("users_id"))
-    comments= db.relationship('Comment',backref = 'comments',lazy="dynamic")
+    __tablename__ = 'categories'
 
-    def __repr__(self):
-        return f'User{self.name}'
+    # pitchCategory columns
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+    description = db.Column(db.String(255))
 
-class Interviewpitch(db.Model):
-    __tablename__='interviewpitch'
 
-    id= db.Column(db.Integer,primary_key=True)
-    name= db.Column(db.String(255))
-    user-id =db.Column(db.Integer,db.ForeignKey("users_id"))
-    comments= db.relationship('Comment',backref = 'comments',lazy="dynamic")
+    def save_category(self):
+        db.session.add(self)
+        db.session.commit()
 
-    def __repr__(self):
-        return f'User{self.name}'
+    @classmethod
+    def get_categories(cls):
+        categories = PitchCategory.query.all()
+        return categories
 
-class Productionpitch(db.Model):
-    __tablename__ ='productionpitch'
 
-    id= db.Column(db.Integer,primary_key=True)
-    name= db.Column(db.String(255))
-    user-id =db.Column(db.Integer,db.ForeignKey("users_id"))
-    comments= db.relationship('Comment',backref = 'comments',lazy="dynamic")
+#pitches class
+class Pitch(db.Model):
+    """ List of pitches in each category """
 
-    def __repr__(self):
-        return f'User{self.name}'
+    __tablename__ = 'pitches'
 
-class promotionPitch(db.Model):
-    __tablename__ ='Promotionpitch'
+    id = db.Column(db.Integer,primary_key = True)
+    content = db.Column(db.String)
+    category_id = db.Column(db.Integer, db.ForeignKey("categories.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
+    vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
 
-    id= db.Column(db.Integer,primary_key=True)
-    name= db.Column(db.String(255))
-    user-id =db.Column(db.Integer,db.ForeignKey("users_id"))
-    comments= db.relationship('Comment',backref = 'comments',lazy="dynamic")
 
-    def __repr__(self):
-        return f'User{self.name}'
+
+    def save_pitch(self):
+        ''' Save the pitches '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def clear_pitches(cls):
+        Pitch.all_pitches.clear()
+
+    # display pitches
+
+    def get_pitches(id):
+        pitches = Pitch.query.filter_by(category_id=id).all()
+        return pitches
+
+
 
 class Comments(db.Model):
 
@@ -65,7 +70,7 @@ class Comments(db.Model):
     id= db.Column(db.Integer,primary_key=True)
     comments= db.Column(db.String(255))
     user_id= db.Column(db.Integer,foreignkey=True)
-    pickuplines_id =db.Column(db.Integer,foreignkey=True)
+    pitch =db.Column(db.Integer,foreignkey=True)
 
 
 def save_comments(self):
