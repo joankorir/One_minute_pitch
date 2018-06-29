@@ -79,5 +79,5 @@ def save_comments(self):
 
         @classmethod
         def get_comments(self,id):
-            comments = Comments.query.filter_by(pickuplines_id,interviewpitch_id,productionpitch_id,promotionPitch_id).all()
+            comments = Comments.query.filter_by(picthes_id = pitches_id).all()
             return comments
