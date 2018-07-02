@@ -1,14 +1,14 @@
-                                            
+
 class Config:
-     '''
-     General configuration parent class
-     '''
+        '''
+        General configuration parent class
+        '''
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql + psycopg2://joan:joan1234@localhost/onemintepitch'
+        SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joan:ray@localhost/pitchminute'
 
-    @staticmethod
-    def init_app(app):
-       pass
+        @staticmethod
+        def init_app(app):
+           pass
 
 class ProdConfig(Config):
     """
