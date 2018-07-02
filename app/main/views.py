@@ -74,22 +74,22 @@ def new_category():
     return render_template('new_category.html', category_form = form,title=title)
 
 
+# viewing other pitches
+@main.route('/view-pitch/<int:id>', methods=['GET', 'POST'])
+@login_required
+def view_pitch(id):
+    '''
+    Function the returns a single pitch for comment to be added
+    '''
+    print(id)
+    pitches = Pitch.query.get(id)
 
-# @main.route('/view-pitch/<int:id>', methods=['GET', 'POST'])
-# @login_required
-# def view_pitch(id):
-#     '''
-#     Function the returns a single pitch for comment to be added
-#     '''
-#     print(id)
-#     pitches = Pitch.query.get(id)
-#
-#
-#     if pitches is None:
-#         abort(404)
-#     #
-#     comment = Comments.get_comments(id)
-#     return render_template('view-pitch.html', pitches=pitches, comment=comment, category_id=id)
+
+    if pitches is None:
+        abort(404)
+    #
+    comment = Comments.get_comments(id)
+    return render_template('view-pitch.html', pitches=pitches, comment=comment, category_id=id)
 
 
 #adding a comment

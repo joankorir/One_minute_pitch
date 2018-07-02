@@ -2,6 +2,7 @@ from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -59,7 +60,9 @@ class PitchCategory(db.Model):
 
 #pitches class
 class Pitch(db.Model):
-    """ List of pitches in each category """
+    """
+    List of pitches in each category
+    """
 
     __tablename__ = 'pitches'
 
@@ -69,7 +72,7 @@ class Pitch(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
     comment = db.relationship("Comments", backref="pitches", lazy = "dynamic")
     vote = db.relationship("Votes", backref="pitches", lazy = "dynamic")
-
+    posted = db.Column(db.DateTime,default=datetime.utcnow)
 
 
     def save_pitch(self):

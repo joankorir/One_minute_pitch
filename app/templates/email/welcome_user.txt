@@ -1,0 +1,4 @@
+Hello {{user.username}}
+Welcome to Pitch Minute
+
+You have signed up for the app and for that you can use the app.
