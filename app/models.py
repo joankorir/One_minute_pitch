@@ -20,7 +20,7 @@ class User(UserMixin,db.Model):
     password_hash =db.Column(db.String(255))
     pitches = db.relationship("Pitch", backref="user", lazy = "dynamic")
     comments= db.relationship("Comments", backref="user", lazy ="dynamic")
-    vote = db.relationship("Votes", bacref="user",lazy= "dynamic")
+    vote = db.relationship("Votes", backref="user",lazy= "dynamic")
 
     @property
     def password(self):
