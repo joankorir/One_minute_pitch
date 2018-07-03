@@ -1,5 +1,5 @@
 !/usr/bin/env bash
-export MAIL_USERNAME=495
-export MAIL_PASSWORD=Te bote
+export MAIL_USERNAME='joankorir44@gmail.com'
+export MAIL_PASSWORD='Te bote'
 
 python manage.py server
