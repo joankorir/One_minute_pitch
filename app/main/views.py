@@ -15,7 +15,7 @@ def index():
     category = PitchCategory.get_categories()
 
     title = 'Home- Welcome'
-    return render_template('index.html', title = title, categories=category)
+    return render_template('index.html', title = title, category=category)
 
 
 @main.route('/user/<uname>')
