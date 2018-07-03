@@ -6,6 +6,7 @@ class Config:
     '''
 
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joan:ray@localhost/pitchminute'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
 
