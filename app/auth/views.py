@@ -1,13 +1,13 @@
 from flask import render_template,redirect,url_for
 from . import auth
 from ..models import User
-from .forms import RegistrationForm
+from .forms import LoginForm, RegistrationForm
 from .. import db
 from flask_login import login_user,logout_user,login_required
 from .. email import mail_message
 
-@auth.route('/login',methods=['GET'.'POST'])
-def login()
+@auth.route('/login',methods=['GET','POST'])
+def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email = login_form.email.data).first()
@@ -36,7 +36,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-         mail_message("Welcome to Pitch Minute","email/welcome_user",user.email,user=user)
+        mail_message("Welcome to Pitch Minute","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.login'))
         title = "New Account"
