@@ -5,7 +5,7 @@ The project is about viewing different pitches categories , submiting it and one
 ## By joan korir
 
 ## Description
-The project enables users to view various categories of pitches .They can add a comment on the pitches .Apart from that they upvote or downvote the pitch according to the users interest over the pitch,Users can be able to submit there pitches whichever the category.Basically the project itself its all about submitting adding a comment.A user must sign up to vote.
+The project enables users to view various categories of pitches .They can add a comment on the pitches .Apart from that they upvote or downvote the pitch according to the users interest over the pitch,Users can be able to submit there pitches whichever the category.Basically the project itself its all about submitting adding a comment.A user must sign up to vote the various categories.
 
 ## Setup/installation Requirements
 .pip install flask
