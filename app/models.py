@@ -8,7 +8,7 @@ from datetime import datetime
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-class User(db.Model):
+class User(UserMixin,db.Model):
     __tablename__ ='users'
 
     id = db.Column(db.Integer,primary_key = True)
@@ -20,7 +20,7 @@ class User(db.Model):
     password_hash =db.Column(db.String(255))
     pitches = db.relationship("Pitch", backref="user", lazy = "dynamic")
     comments= db.relationship("Comments", backref="user", lazy ="dynamic")
-
+    vote = db.relationship("Votes", bacref="user",lazy= "dynamic")
 
     @property
     def password(self):
@@ -110,3 +110,24 @@ def save_comments(self):
         def get_comments(self,id):
             comments = Comments.query.filter_by(picthes_id = pitches_id).all()
             return comments
+
+#votes
+class Votes(db.Model):
+    '''
+    class to model votes
+    '''
+    __tablename__='votes'
+
+    id = db.Column(db. Integer, primary_key=True)
+    vote = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    pitches_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+
+    def save_vote(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_votes(cls,user_id,pitches_id):
+        votes = Vote.query.filter_by(user_id=user_id, pitches_id=pitches_id).all()
+        return votes
