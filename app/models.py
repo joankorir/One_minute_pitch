@@ -110,7 +110,7 @@ class Comments(db.Model):
     @classmethod
     def get_comments(self,id):
        comment= Comments.query.filter_by(pitches_id = pitches_id).all()
-    return comment
+       return comment
 
 #votes
 class Votes(db.Model):
