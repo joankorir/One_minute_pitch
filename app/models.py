@@ -102,14 +102,14 @@ class Comments(db.Model):
     pitches_id =db.Column(db.Integer,db.ForeignKey("pitches.id"))
 
 
-def save_comments(self):
+def save_comment(self):
         db.session.add(self)
         db.session.commit()
 
         @classmethod
         def get_comments(self,id):
-            comments = Comments.query.filter_by(picthes_id = pitches_id).all()
-            return comments
+            comment= Comments.query.filter_by(picthes_id = pitches_id).all()
+            return comment
 
 #votes
 class Votes(db.Model):
