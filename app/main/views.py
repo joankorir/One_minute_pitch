@@ -71,7 +71,7 @@ def new_category():
         return redirect(url_for('.index'))
 
     title = 'New category'
-    return render_template('category.html', category_form = form,title=title)
+    return render_template('new_category.html', category_form = form,title=title)
 
 
 # viewing other pitches
@@ -110,7 +110,7 @@ def post_comment(id):
         new_comment.save_comment()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
-    return render_template('post_comment.html', comment_form=form, title=title)
+    return render_template('comments.html', comment_form=form, title=title)
 
 #Routes upvoting/downvoting pitches
 @main.route('/pitch/upvote/<int:id>')
