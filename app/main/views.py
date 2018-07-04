@@ -87,7 +87,7 @@ def view_pitch(id):
 
     if pitches is None:
         abort(404)
-    #
+    
     comment = Comments.get_comments(id)
     return render_template('view-pitch.html', pitches=pitches, comment=comment, category_id=id)
 
