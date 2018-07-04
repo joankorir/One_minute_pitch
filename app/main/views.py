@@ -31,7 +31,7 @@ def profile(uname):
 @main.route('/category/new-pitch/<int:id>', methods=['GET', 'POST'])
 @login_required
 def new_pitch(id):
-    ''' Function to check Pitches form and fetch data from the fields '''
+
     form = PitchForm()
     category = PitchCategory.query.filter_by(id=id).first()
 
@@ -58,9 +58,7 @@ def category(id):
 @main.route('/add/category', methods=['GET','POST'])
 @login_required
 def new_category():
-    '''
-    View new group route function that returns a page with a form to create a category
-    '''
+    
     form = CategoryForm()
 
     if form.validate_on_submit():
@@ -87,7 +85,7 @@ def view_pitch(id):
 
     if pitches is None:
         abort(404)
-    
+
     comment = Comments.get_comments(id)
     return render_template('view-pitch.html', pitches=pitches, comment=comment, category_id=id)
 
@@ -96,7 +94,9 @@ def view_pitch(id):
 @main.route('/write_comment/<int:id>', methods=['GET', 'POST'])
 @login_required
 def comments(id):
-    ''' function to post comments '''
+    '''
+    function of comments
+    '''
     form = CommentForm()
     title = 'post comment'
     pitches = Pitch.query.filter_by(id=id).first()
@@ -105,8 +105,8 @@ def comments(id):
          abort(404)
 
     if form.validate_on_submit():
-        opinion = form.opinion.data
-        new_comment = Comments(opinion=opinion, user_id=current_user.id, pitches_id=pitches.id)
+        comments = form.comments.data
+        new_comment = Comments(comments=comments, user_id=current_user.id, pitches_id=pitches.id)
         new_comment.save_comment()
         return redirect(url_for('.view_pitch', id=pitches.id))
 
