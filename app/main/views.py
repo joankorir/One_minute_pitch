@@ -114,7 +114,7 @@ def comments(id):
 
     return render_template('comments.html', comment_form=form, title=title)
 
-#Routes upvoting/downvoting pitches
+#upvote and downvote route
 @main.route('/pitch/upvote/<int:id>')
 @login_required
 def upvote(id):

@@ -26,6 +26,9 @@
             </tr>
            <h4 class="text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-info" href="{{url_for('.comments',id=pitches.id)}}"> Add your comment</a></h4>
           </table>
+          {% if comment %}
+              {{ macro.displaySpecificPitch(comment)}}
+          {% endif %}
 
     </div>
   </div>
