@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import User,Pitch,Comments,PitchCategory
+from ..models import User,Pitch,Comments,PitchCategory,Votes,PhotoProfile
 from .. import db,photos
 from . forms import PitchForm, CommentForm, CategoryForm ,UpdateProfile
 from flask_login import login_required,current_user
@@ -15,7 +15,7 @@ def index():
     category = PitchCategory.get_categories()
 
     title = 'Home- Welcome'
-    return render_template('index.html', title = title, category=category)
+    return render_template('index.html', title = title, categories=category)
 
 
 @main.route('/user/<uname>')
@@ -95,7 +95,7 @@ def view_pitch(id):
 #adding a comment
 @main.route('/write_comment/<int:id>', methods=['GET', 'POST'])
 @login_required
-def post_comment(id):
+def comments(id):
     ''' function to post comments '''
     form = CommentForm()
     title = 'post comment'
