@@ -82,12 +82,13 @@ class Pitch(db.Model):
 
     @classmethod
     def clear_pitches(cls):
-        Pitch.all_pitches.clear()
+        Pitch.pitched_ideas.clear()
 
     # display pitches
 
     def get_pitches(id):
-        pitches = Pitch.query.filter_by(category_id=id).all()
+        pitches = Pitch.query.order_by(
+                Pitch.posted.desc()).filter_by(category_id=id).all()
         return pitches
 
 
@@ -102,14 +103,14 @@ class Comments(db.Model):
     pitches_id =db.Column(db.Integer,db.ForeignKey("pitches.id"))
 
 
-def save_comment(self):
-        db.session.add(self)
-        db.session.commit()
+    def save_comment(self):
+            db.session.add(self)
+            db.session.commit()
 
-        @classmethod
-        def get_comments(self,id):
-            comment= Comments.query.filter_by(picthes_id = pitches_id).all()
-            return comment
+    @classmethod
+    def get_comments(self,id):
+                comment= Comments.query.filter_by(pitches_id = pitches_id).all()
+                return comment
 
 #votes
 class Votes(db.Model):

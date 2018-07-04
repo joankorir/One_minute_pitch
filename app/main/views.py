@@ -5,6 +5,8 @@ from .. import db,photos
 from . forms import PitchForm, CommentForm, CategoryForm ,UpdateProfile
 from flask_login import login_required,current_user
 
+import markdown2
+
 #categories
 @main.route('/')
 def index():
@@ -58,7 +60,7 @@ def category(id):
 @main.route('/add/category', methods=['GET','POST'])
 @login_required
 def new_category():
-    
+
     form = CategoryForm()
 
     if form.validate_on_submit():
