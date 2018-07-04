@@ -23,9 +23,9 @@ class CategoryForm(FlaskForm):
     Class to create wtf form for displaying the get_categories
     '''
 
-    name = StringField('Category Name', validators=[Required])
+    name = StringField('Category Name', validators=[Required()])
     submit =SubmitField('SUBMIT')
 
 class UpdateProfile(FlaskForm):
-    bio = TextAreaField('Tell us about you.',validators = [Required])
+    bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('SUBMIT')
