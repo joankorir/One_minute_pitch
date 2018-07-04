@@ -89,7 +89,7 @@ def view_pitch(id):
         abort(404)
 
     comment = Comments.get_comments(id)
-    return render_template('view-pitch.html', pitches=pitches, comment=comment, category_id=id)
+    return render_template('view_pitch.html', pitches=pitches, comment=comment, category_id=id)
 
 
 #adding a comment

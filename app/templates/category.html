@@ -3,11 +3,11 @@
 
 <!-- content block -->
 {% block content %}
-  <div class=" col-md-10 col-md-offset-1 col-sm-12" style="background-color:lime;padding:9px">
-    <img src="{{url_for('static',filename='images/pitch.png')}}" style="height:100px;background-size:cover; alt="pitch" class="well img-responsive b">
+  <div class=" col-md-10 col-md-offset-1 col-sm-12" style="background-color:black;padding:9px">
+    <img src="{{url_for('static',filename='images/pitch.png')}}" style="height:100px;background-size:cover"alt="pitch" class="well img-responsive b">
       <h3 class="text-center">{{category.name|upper}}</h3>
        <a class="btn btn-primary text-center  " href="/category/new-pitch/{{category.id}}"> Post a Pitch</a>
-       <HR>
+       <hr>
   </div>
   {% if pitches %}
        <div class="col-sm-12 col-md-8">
