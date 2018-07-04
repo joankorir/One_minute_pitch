@@ -71,7 +71,7 @@ def new_category():
         return redirect(url_for('.index'))
 
     title = 'New category'
-    return render_template('new_category.html', category_form = form,title=title)
+    return render_template('category.html', category_form = form,title=title)
 
 
 # viewing other pitches

@@ -1,12 +1,13 @@
 
-{% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf%}
-<!-- Styles block -->
-{% block styles%}
-    {{ super() }}
+{% extends 'base.html' %} {% import 'macros.html' as macro%}
+
+<!-- content block -->
+{% block content %}
+  <div class=" col-md-10 col-md-offset-1 col-sm-12">
+      <h3 class="text-center">{{category.name|upper}}</h3>
+       <a class="btn btn-primary text-center  " href="/category/new-pitch/{{category.id}}"> Post a Pitch</a>
+       <HR>
+  </div>
+
 
 {% endblock %}
-
-<!-- Content block -->
-{% block content %}
-    <title> {{ title }} </title>
