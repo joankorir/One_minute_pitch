@@ -6,7 +6,7 @@
           <a href="{{url_for('.category',id=category.id)}}"><p>{{category.name|upper}}</p></a>
         </div>
 
-{% endfor %}
+  {% endfor %}
 {% endmacro %}
 
 {% macro displayPitches(pitch_list) %}
@@ -24,8 +24,8 @@
         </div>
       </div>
 
+    {%endfor %}
  {% endmacro %}
- {%endfor %}
 
 {% macro displaySpecificPitch(specific_pitch_list) %}
  {% for comment in specific_pitch_list %}
