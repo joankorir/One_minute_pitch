@@ -1,4 +1,3 @@
-
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 
@@ -10,16 +9,17 @@
 
 {% block content %}
 
-    <div class="container">
-        <h3> Pitches</h3>
+    <div class="container" style="font-type:italic; font-size:10px;color:blue">
+        <h3>Pitches</h3>
         <a href="{{url_for('main.new_pitch')}}">
             <br>
             Add a new Pitch
         </a>
 
         <hr>
-
             {{macro.displayPitches(pitches,1)}}    <a href="{{url_for('main.new_comment')}}"> Comment</a>
         <hr>
 
     </div>
+
+{% endblock %
